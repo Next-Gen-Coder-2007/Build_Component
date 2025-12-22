@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Chat = require('../models/chatsession.model');
 
-router.post('/chats', async (req, res) => {
+router.post('/chats', async (req, res) => { // pending - should use the user id from auth token and try to sanitize the payload and store it in the new chat
     try {
         const userId = req.body.id;
         const { messages } = req.body;
@@ -13,7 +13,7 @@ router.post('/chats', async (req, res) => {
     }
 });
 
-router.get('/chats', async (req, res) => {
+router.get('/chats', async (req, res) => { // pending - should filter by user id from auth token and find chats for that user only
     try {
         const chats = await Chat.find();
         res.status(200).json(chats);

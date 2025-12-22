@@ -2,6 +2,8 @@ const router = require('express').Router();
 const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
+const generateToken = require('../middlewares/auth.middleware');
+
 dotenv.config();
 
 router.post('/auth/register', async (req, res) => {
@@ -14,13 +16,13 @@ router.post('/auth/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully', token: generateToken(newUser._id) });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
 });
 
-router.post('/auth/login', async (req, res) => {
+router.post('/auth/login', async (req, res) => { // pending - have to add jwt token in cookies
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -32,34 +34,6 @@ router.post('/auth/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
         res.status(200).json({ message: 'Login successful' });
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-router.get('/auth/me', async (req, res) => {
-    try {
-        const user = await User.findById(userId).select('-password');
-        res.status(200).json({ user });
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-router.put('/auth/me', async (req, res) => {
-    try {
-        const { name, email } = req.body;
-        const user = await User.findByIdAndUpdate(userId, { name, email }, { new: true }).select('-password');
-        res.status(200).json({ user });
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-router.delete('/auth/me', async (req, res) => {
-    try {
-        await User.findByIdAndDelete(userId);
-        res.status(200).json({ message: 'User deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
