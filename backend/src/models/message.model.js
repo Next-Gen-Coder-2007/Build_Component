@@ -1,44 +1,37 @@
 const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema({
+  chatSessionId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ChatSession",
+    required: true,
+  },
   role: {
     type: String,
     enum: ["user", "assistant"],
     required: true,
   },
-  content: {
+  prompt: {
     type: String,
-    required: function () {
-      return this.role === "user";
-    },
+    required: false,
   },
   explanation: {
     type: String,
-    required: function () {
-      return this.role === "assistant";
-    },
+    required: false,
   },
   component: {
-    type: String,
-    required: function () {
-      return this.role === "assistant";
+    code: {
+      type: String,
+    },
+    sandboxUrl: {
+      type: String,
     },
   },
-  config: {
-    componentType: {
-      type: String,
-      required: function () {
-        return this.role === "assistant";
-      },
-    },
-    framework: {
-      type: String,
-      required: function () {
-        return this.role === "assistant";
-      },
-    },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
-  timestamp: {
+  updatedAt: {
     type: Date,
     default: Date.now,
   },
