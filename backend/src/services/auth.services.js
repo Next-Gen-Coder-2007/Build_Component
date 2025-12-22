@@ -18,7 +18,6 @@ exports.registerUser = async (name, email, password) => {
     .status(201)
     .json({
       message: "User registered successfully",
-      token: generateToken(newUser._id),
     });
 };
 
