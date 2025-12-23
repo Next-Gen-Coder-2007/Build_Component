@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-exports.registerUser = async (name, email, password) => {
+exports.registerUser = async (req, res) => {
   const { name, email, password } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -21,7 +21,7 @@ exports.registerUser = async (name, email, password) => {
     });
 };
 
-exports.loginUser = async (email, password) => {
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
