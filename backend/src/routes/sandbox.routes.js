@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const Component = require('../models/component.model');
 
 router.post('/run', async (req, res) => {
     try {

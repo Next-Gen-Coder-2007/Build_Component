@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './Components/Layout/Sidebar/Sidebar';
+import AppLayout from './Components/Layout/Applayout/AppLayout';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Sidebar />} />
-          <Route path="/about" element={<h1>About Page</h1>} />
+          <Route path="/" element={<AppLayout />} />
+          <Route path="/:chatId" element={<AppLayout />} />
         </Routes>
       </Router>
     </div>

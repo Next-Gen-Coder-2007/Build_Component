@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/chats", messageRoutes);
+app.use("/api/message", messageRoutes);
 app.use("/api/sandbox", sandboxRoutes);
 app.use("/api/chats", chatRoutes);
 

@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
-const generateToken = require("../middlewares/auth.middleware");
+const generateToken = require("../middleware/auth.middleware");
 const dotenv = require("dotenv");
 
 dotenv.config();

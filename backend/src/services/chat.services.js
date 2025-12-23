@@ -1,11 +1,12 @@
 const Chat = require("../models/chatsession.model");
 const Message = require("../models/message.model");
-const { createMessage, generateComponent } = require("./auth.services");
+const { createMessage, generateComponent } = require("./ai.services");
 
 exports.createChat = async (req, res) => {
   const userId = req.user.id;
   const { message } = req.body;
-  const newChat = new Chat({ userId });
+  const title = message.content.slice(0, 10) + "...";
+  const newChat = new Chat({ userId, title });
   await newChat.save();
   const { newMessageId } = await createMessage(message);
   const { newAiMessageId } = await generateComponent(message);

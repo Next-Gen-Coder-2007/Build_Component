@@ -3,7 +3,6 @@ const { createMessage, getMessagesByChatId } = require('../controllers/message.c
 const { authenticateToken } = require('../middleware/auth.middleware');
 
 router.post('/message', authenticateToken, createMessage);
-router.get('/:chatId/messages', authenticateToken, getMessagesByChatId);
-
+router.get('/:chatId', authenticateToken, getMessagesByChatId);
 
 module.exports = router;
