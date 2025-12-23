@@ -1,0 +1,98 @@
+.outer-register-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.register-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 35px 30px;
+    width: 360px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.register-container h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.register-name-container,
+.register-email-container,
+.register-password-container,
+.register-confirm-password-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+
+.register-name-container label,
+.register-email-container label,
+.register-password-container label,
+.register-confirm-password-container label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-left: 8px;
+}
+
+.register-name-container input,
+.register-email-container input,
+.register-password-container input,
+.register-confirm-password-container input {
+    padding: 12px 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.register-name-container input:focus,
+.register-email-container input:focus,
+.register-password-container input:focus,
+.register-confirm-password-container input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.register-container button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, gray, lightgray);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.register-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(0,0,0, 0.4);
+}
+
+.login-page-nav {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+}
+
+.login-page-nav a {
+    color: #667eea;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-page-nav a:hover {
+    text-decoration: underline;
+}

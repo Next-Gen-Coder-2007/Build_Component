@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ChatListItem from "../../../Chat/Chatlistitem/Chatlistitem";
-import LoadingSpinner from "../../../Common/LoadingSpinner/LoadingSpinner";
+import ChatListItem from "../../Chat/Chatlistitem/Chatlistitem";
+import LoadingSpinner from "../../Common/LoadingSpinner/LoadingSpinner";
 import "./Sidebar.css";
 
 const Sidebar = () => {
