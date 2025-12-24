@@ -1,12 +1,14 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
-const generateToken = require("../middleware/auth.middleware");
+const {generateToken} = require("../middleware/auth.middleware");
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken")
 
 dotenv.config();
 
 exports.registerUser = async (req, res) => {
   const { name, email, password } = req.body;
+  console.log("request Recieved")
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({ message: "User already exists" });
@@ -38,3 +40,12 @@ exports.loginUser = async (req, res) => {
   });
   res.status(200).json({ message: "Login successful", token });
 };
+
+exports.verifyUser = async (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    return res.status(401).json({ authenticated: false })
+  }
+  jwt.verify(token, process.env.JWT_SECRET)
+  return res.status(200).json({ authenticated: true })
+}

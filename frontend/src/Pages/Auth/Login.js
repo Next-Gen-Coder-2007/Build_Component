@@ -10,19 +10,24 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async () => {
     try{
-      const response = await fetch("https://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-      })
-      navigate("/")
+        credentials: 'include',
+      });
+      if (response.ok) {
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || "Login failed");
+      }
     }catch (e){
-      console.log(e)
+      console.log(e);
       setError("Server Side Error");
     }
-    
   }
   return (
     <div className="outer-login-container">

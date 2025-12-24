@@ -1,17 +1,25 @@
-const authServices = require('../services/auth.services');
+const {registerUser, loginUser, verifyUser } = require('../services/auth.services');
 
 exports.registerUser = async (req, res) => {
     try {
-        await authServices.registerUser(req, res);
+        await registerUser(req, res);
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ error });
     }
 };
 
 exports.loginUser = async (req, res) => {
     try {
-        await authServices.loginUser(req, res);
+        await loginUser(req, res);
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ error});
     }
 };
+
+exports.verifyUser = async (req, res) => {
+    try{
+        await verifyUser(req, res);
+    } catch(error){
+        res.status(500).json({ error });
+    }
+}

@@ -7,11 +7,16 @@ const messageRoutes = require("./src/routes/message.routes");
 const sandboxRoutes = require("./src/routes/sandbox.routes");
 const chatRoutes = require("./src/routes/chat.routes");
 const userRoutes = require("./src/routes/user.routes");
+const cookieParser = require('cookie-parser')
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000", // Allow your frontend origin
+  credentials: true
+}));
+app.use(cookieParser())
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ChatListItem from "../../Chat/Chatlistitem/Chatlistitem";
 import LoadingSpinner from "../../Common/LoadingSpinner/LoadingSpinner";
 import "./Sidebar.css";
+import axios from 'axios'
 
 const Sidebar = () => {
   const [chats, setChats] = useState([]);
@@ -12,9 +13,12 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const response = await fetch("https://localhost:5000/api/chats");
+        const response = await fetch("http://localhost:5000/api/chats", {
+          credentials : "include"
+        });
         const data = await response.json();
         setChats(data);
+        console.log(data)
       } catch (error) {
         console.error("Error fetching chats:", error);
       } finally {
