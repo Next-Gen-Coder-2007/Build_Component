@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./ChatInput.css";
+import "../styles/ChatInput.css";
 
-const ChatInput = ({ chatId, onNewMessage }) => {
+const ChatInput = ({ chatId, setMessages }) => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -14,15 +14,12 @@ const ChatInput = ({ chatId, onNewMessage }) => {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ chatId, message }),
-      });
+      }).then(res => res.json());
 
-      const data = await res.json();
-      console.log(data);
-
-      if (data && data._id) {
-        onNewMessage();
+      const data = await res;
+      if (data) {
+        setMessages(prev => [...prev, data.newMessage, data.newAiMessage])
       }
-
       setMessage("");
     } catch (err) {
       console.error(err);

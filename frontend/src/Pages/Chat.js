@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Sidebar from "../../Components/Home/Sidebar/Sidebar";
-import "./Chat.css";
-import ChatBox from "./ChatBox";
+import Sidebar from "../components/Sidebar";
+import "../styles/Chat.css";
+import ChatBox from "../components/ChatBox";
 import { useParams, useNavigate } from "react-router-dom";
-import ChatInput from "./ChatInput";
+import ChatInput from "../components/ChatInput";
 
 const Chat = () => {
   const { chatId } = useParams();
@@ -48,7 +48,7 @@ const Chat = () => {
   useEffect(() => {
     fetchMessages();
     fetchChatDetails();
-  }, [chatId, navigate]);
+  }, [chatId]);
 
   return (
     <div style={{ padding: "20px", height: "100vh", display: "flex" }}>
@@ -62,20 +62,16 @@ const Chat = () => {
             </p>
           </div>
           <div className="right-chat-header">
-            <button className="profile"
-              onClick={() => navigate("/profile")}
-            >
+            <button className="profile" onClick={() => navigate("/profile")}>
               Profile
             </button>
-            <button  onClick={() => navigate("/login")}>Logout</button>
+            <button onClick={() => navigate("/login")}>Logout</button>
           </div>
         </div>
 
-        {/* Chat messages */}
         <ChatBox chatId={chatId} messages={messages} />
 
-        {/* Chat input */}
-        <ChatInput chatId={chatId} onNewMessage={fetchMessages} />
+        <ChatInput chatId={chatId} setMessages={setMessages} />
       </div>
     </div>
   );

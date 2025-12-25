@@ -5,6 +5,7 @@
     width: 100%;
     padding: 20px;
     background: #bebebe;
+    border-bottom-right-radius: 20px;
 }
 
 .chat-input-new input{

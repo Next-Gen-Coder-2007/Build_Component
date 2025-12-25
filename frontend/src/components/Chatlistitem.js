@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./Chatlistitem.css";
+import "../styles/Chatlistitem.css";
 
 const Chatlistitem = ({ chat, onDeleteSuccess }) => {
   const navigate = useNavigate();

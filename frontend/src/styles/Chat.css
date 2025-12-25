@@ -52,3 +52,9 @@
 .time{
   font-size: 10px;
 }
+
+@media (max-width: 768px) {
+  .chat-header{
+    padding-left: 65px;
+  }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./ProfilePage.css"; // your CSS file
+import "../styles/ProfilePage.css";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -8,7 +8,6 @@ const ProfilePage = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
 
-  // Fetch user profile
   const fetchUser = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/user", {

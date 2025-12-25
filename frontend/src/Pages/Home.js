@@ -1,5 +1,5 @@
-import Sidebar from "../../Components/Home/Sidebar/Sidebar";
-import ChatBox from "../../Components/Home/ChatBox/ChatBox";
+import Sidebar from "../components/Sidebar";
+import ChatBox from "../components/ChatBox1";
 
 const Home = () => {
   return (

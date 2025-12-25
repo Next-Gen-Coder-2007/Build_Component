@@ -1,4 +1,4 @@
-import "./ChatBox.css";
+import "../styles/ChatBox1.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

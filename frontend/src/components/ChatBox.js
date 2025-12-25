@@ -1,5 +1,5 @@
-import ChatMessage from "../../Components/Chat/ChatMessage/ChatMessage";
-import "./ChatBox.css";
+import ChatMessage from "./ChatMessage";
+import "../styles/ChatBox.css";
 
 const ChatBox = ({ messages }) => {
   return (

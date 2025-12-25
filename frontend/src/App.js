@@ -4,16 +4,15 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import Login from "./Pages/Auth/Login";
-import Register from "./Pages/Auth/Register";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { useEffect } from "react";
-import Chat from "./Pages/Chat/Chat";
-import ProfilePage from "./Pages/ProfilePage";
+import Chat from "./pages/Chat";
+import ProfilePage from "./pages/ProfilePage";
 
 function AuthWrapper() {
   const navigate = useNavigate();
-
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -29,7 +28,7 @@ function AuthWrapper() {
         navigate("/login", { replace: true });
       }
     };
-
+    if (["/register", '/login'].includes(window.location.pathname)) return;
     verifyUser();
   }, [navigate]);
 }

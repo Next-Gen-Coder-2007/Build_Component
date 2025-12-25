@@ -57,7 +57,7 @@ exports.createMessage = async (chatId, prompt) => {
     prompt,
   });
   await newMessage.save();
-  return { newMessageId: newMessage._id };
+  return { newMessage: newMessage };
 };
 
 // Generate React component + explanation
@@ -65,7 +65,7 @@ exports.generateComponent = async (chatId, message) => {
   try {
     const combinedPrompt = `
 Generate a React component based on this message: ${JSON.stringify(message)}.
-Also explain the component features in 3 concise bullet points.
+Also explain the component features in 10 concise bullet points.
 Return JSON with keys "explanation" (array of strings) and "code" (string).
 Use valid JSON only.
     `;
@@ -77,11 +77,11 @@ Use valid JSON only.
       chatSessionId: chatId,
       role: "assistant",
       explanation,
-      component: { code, sandboxUrl: "" }, // Add real sandbox URL if needed
+      component: { code },
     });
 
     await newAiMessage.save();
-    return { newAiMessageId: newAiMessage._id };
+    return { newAiMessage: newAiMessage };
   } catch (error) {
     console.error("AI generation failed:", error);
     return { error: error.message };
