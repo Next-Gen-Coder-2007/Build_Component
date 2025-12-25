@@ -1,20 +1,51 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Pages//Home';
-import Login from './Pages/Auth/Login';
-import Register from './Pages/Auth/Register';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Auth/Login";
+import Register from "./Pages/Auth/Register";
+import { useEffect } from "react";
+import Chat from "./Pages/Chat/Chat";
+import ProfilePage from "./Pages/ProfilePage";
+
+function AuthWrapper() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/verify", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (!res.ok) {
+          navigate("/login", { replace: true });
+        }
+      } catch (err) {
+        navigate("/login", { replace: true });
+      }
+    };
+
+    verifyUser();
+  }, [navigate]);
+}
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path='/login' element = {<Login/>}/>
-          <Route path='/register' element = {<Register/>}/>
-          <Route path="/" element={<Home />} />
-          <Route path="/:chatId" element={<Home />} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <AuthWrapper />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/:chatId" element={<Chat />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+    </Router>
   );
 }
 

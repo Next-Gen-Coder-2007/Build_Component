@@ -41,6 +41,17 @@ exports.loginUser = async (req, res) => {
   res.status(200).json({ message: "Login successful", token });
 };
 
+exports.logoutUser = async (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax",
+    path: "/",
+  });
+
+  res.status(200).json({ message: "Logout successful" });
+}
+
 exports.verifyUser = async (req, res) => {
   const token = req.cookies.token
   if (!token) {

@@ -3,14 +3,31 @@ const Message = require("../models/message.model");
 const { createMessage, generateComponent } = require("./ai.services");
 
 exports.createChat = async (req, res) => {
-  const userId = req.user.id;
-  const { message } = req.body;
-  const title = message.content.slice(0, 10) + "...";
-  const newChat = new Chat({ userId, title });
-  await newChat.save();
-  const { newMessageId } = await createMessage(message);
-  const { newAiMessageId } = await generateComponent(message);
-  res.status(201).json({ newChatId: newChat._id, newMessageId, newAiMessageId });
+  try {
+    if (!req.user?.id) {
+      return res.status(401).json({ message: "Unauthorized: User missing" });
+    }
+    const userId = req.user.id;
+    const { message } = req.body;
+    console.log(typeof message);
+    const title = message.slice(0, 20) + "...";
+    const newChat = new Chat({ userId, title });
+    await newChat.save();
+    await createMessage(
+      newChat._id,
+      message
+    );
+    await generateComponent(
+      newChat._id,
+      message
+    );
+    return res.status(201).json({ newChatId: newChat._id });
+  } catch (err) {
+    console.error("Crash:", err.message);
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", error: err.message });
+  }
 };
 
 exports.getChats = async (req, res) => {

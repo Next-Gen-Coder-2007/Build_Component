@@ -8,10 +8,11 @@ exports.getMessagesByChatId = async (req, res) => {
   }
 };
 
-exports.createMessage = async (req, res) => {
+exports.newMessage = async (req, res) => {
   try {
     await messageService.newMessage(req, res);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Server error" });
   }
 };

@@ -1,19 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
       return;
     }
 
@@ -33,9 +31,9 @@ const Register = () => {
       navigate("/login");
     } catch (e) {
       console.log(e);
-      setError("Something went wrong");
     }
   };
+
 
   return (
     <div className="outer-register-container">
@@ -55,7 +53,7 @@ const Register = () => {
         <div className="register-email-container">
           <label>Email</label>
           <input
-            type="text"
+            type="email"
             placeholder="Enter your email ..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -89,8 +87,6 @@ const Register = () => {
             Already have an account? <a href="/login">Login</a>
           </p>
         </div>
-
-        {error.length > 0 ? <p>{error}</p> : <></>}
       </div>
     </div>
   );

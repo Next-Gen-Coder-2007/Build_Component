@@ -1,0 +1,49 @@
+.chatlistitem {
+  background-color: #e0e0e0; /* light grey background */
+  color: #2c2c2c; /* dark text for readability */
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between; /* space between chat info and delete button */
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.chatlistitem:hover {
+  background-color: #d8d8d8; /* slightly darker grey on hover */
+  transform: translateY(-2px);
+}
+
+.chat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.chat-date {
+  font-size: 0.85rem;
+  color: #555; /* medium grey for date */
+}
+
+.delete-btn {
+  background-color: #b0b0b0; /* darker grey for contrast */
+  color: #fff; /* white text */
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #999; /* slightly darker on hover */
+  transform: scale(1.05);
+}

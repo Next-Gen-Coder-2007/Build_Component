@@ -4,10 +4,10 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const authRoutes = require("./src/routes/auth.routes");
 const messageRoutes = require("./src/routes/message.routes");
-const sandboxRoutes = require("./src/routes/sandbox.routes");
 const chatRoutes = require("./src/routes/chat.routes");
 const userRoutes = require("./src/routes/user.routes");
 const cookieParser = require('cookie-parser')
+const rateLimit = require("express-rate-limit");
 dotenv.config();
 
 const app = express();
@@ -21,7 +21,6 @@ app.use(cookieParser())
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/message", messageRoutes);
-app.use("/api/sandbox", sandboxRoutes);
 app.use("/api/chats", chatRoutes);
 
 const PORT = process.env.PORT || 3000;

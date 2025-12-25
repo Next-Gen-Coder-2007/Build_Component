@@ -15,10 +15,12 @@ const messageSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  explanation: {
-    type: String,
-    required: false,
-  },
+  explanation: [
+    {
+      type: String,
+      required: false,
+    },
+  ],
   component: {
     code: {
       type: String,
