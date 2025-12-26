@@ -12,7 +12,7 @@ const ChatBox = () => {
 
     setSending(true);
     try {
-      const res = await fetch("http://localhost:5000/api/chats", {
+      const res = await fetch("http://build-component.onrender.com/api/chats", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
