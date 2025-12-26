@@ -48,6 +48,27 @@ const Chat = () => {
     fetchMessages();
     fetchChatDetails();
   }, [chatId, fetchMessages, fetchChatDetails]);
+  
+  const handleLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+
+    try {
+      const res = await fetch("https://build-component.onrender.com/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+
+    setLoggingOut(false);
+  };
 
   return (
     <div style={{ padding: "20px", height: "100vh", display: "flex" }}>
@@ -64,7 +85,9 @@ const Chat = () => {
             <button className="profile" onClick={() => navigate("/profile")}>
               Profile
             </button>
-            <button onClick={() => navigate("/login")}>Logout</button>
+            <button onClick={handleLogout} disabled={loggingOut}>
+              {loggingOut ? "Logging out..." : "Logout"}
+            </button>
           </div>
         </div>
 
