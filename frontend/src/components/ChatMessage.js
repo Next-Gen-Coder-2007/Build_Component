@@ -42,7 +42,6 @@ const ChatMessage = ({ role, text, explanation, component }) => {
       ></div>
 
       <div className={`chat-message ${role}`}>
-
         {text && (
           <div className="message-text-container">
             <p>{text}</p>
@@ -59,13 +58,11 @@ const ChatMessage = ({ role, text, explanation, component }) => {
 
         {role === "assistant" && code && (
           <div className={`component-box ${isFullScreen ? "fullscreen" : ""}`}>
-
             <div className="file-card">
               <div className="file-card-header">
                 <h3>Component.jsx</h3>
 
                 <div className="file-card-controls">
-
                   {!isFullScreen && (
                     <button onClick={toggleFullScreen}>Fullscreen</button>
                   )}
@@ -82,14 +79,28 @@ const ChatMessage = ({ role, text, explanation, component }) => {
                 </div>
               </div>
               <div className="file-card-body">
-                <SyntaxHighlighter language="jsx" style={oneDark} wrapLongLines={true}>
+                <SyntaxHighlighter
+                  className="code"
+                  language="jsx"
+                  style={oneDark}
+                  wrapLongLines={true}
+                >
                   {code}
                 </SyntaxHighlighter>
               </div>
             </div>
-
             {runCode && (
-              <div className="output-box">
+              <div
+                className="output-box"
+                style={{
+                  width: "100%",
+                  height: isFullScreen ? "80vh" : "50vh",
+                  display: "flex",
+                  borderRadius: "16px",
+                  overflowX: "auto",
+                  overflowY: "auto",
+                }}
+              >
                 <SandpackProvider
                   template="react"
                   theme={atomDark}
@@ -100,27 +111,40 @@ import Component from "./Component";
 export default function App() {
   return <Component />;
 }
-                    `,
+        `,
                     "/Component.jsx": code,
                     "/index.js": `
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 createRoot(document.getElementById("root")).render(<App />);
-                    `,
+        `,
                     "/index.html": `<div id="root"></div>`,
                   }}
                 >
-                  <SandpackLayout>
-                    <SandpackPreview className="sandbox-preview" />
+                  <SandpackLayout
+                    style={{
+                      flex: 1,
+                      height: "100%",
+                      minWidth: "600px",
+                      display: "flex",
+                    }}
+                  >
+                    <SandpackPreview
+                      style={{
+                        flex: 1,
+                        width: "100%",
+                        height: isFullScreen ? "80vh" : "50vh",
+                        border: 0,
+                        minWidth: "600px",
+                      }}
+                    />
                   </SandpackLayout>
                 </SandpackProvider>
               </div>
             )}
-
           </div>
         )}
-
       </div>
     </>
   );
