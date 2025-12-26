@@ -7,7 +7,7 @@ const Chatlistitem = ({ chat, onDeleteSuccess }) => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/chats/${chat._id}`,
+        `http://build-component.onrender.com/api/chats/${chat._id}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
