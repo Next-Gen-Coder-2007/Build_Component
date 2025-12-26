@@ -9,6 +9,7 @@ const Chat = () => {
   const { chatId } = useParams();
   const [messages, setMessages] = useState([]);
   const [chat, setChat] = useState({});
+  const [loggingOut, setLoggingOut] = useState(false)
   const navigate = useNavigate();
 
   const fetchMessages = useCallback(async () => {
