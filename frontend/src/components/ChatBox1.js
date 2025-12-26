@@ -39,7 +39,7 @@ const ChatBox = () => {
     setLoggingOut(true);
 
     try {
-      const res = await fetch("https://build-component.onrender.com/api/logout", {
+      const res = await fetch("https://build-component.onrender.com/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });
