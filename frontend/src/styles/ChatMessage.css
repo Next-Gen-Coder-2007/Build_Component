@@ -12,6 +12,9 @@
   max-width: 900px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .chat-message.user {
@@ -31,8 +34,11 @@
   border: 1px solid #ddd;
   border-bottom-left-radius: 6px;
   text-align: left;
-  width: 100%;
+  width: auto;
+  max-width: 70%;
+  min-width: 120px;
 }
+
 
 .component-box {
   display: flex;
@@ -72,7 +78,6 @@
 
 .file-card-body {
   flex: 1;
-  padding: 10px;
   overflow: auto;
   font-family: "Consolas", monospace;
   font-size: 13px;
@@ -124,7 +129,6 @@
   font-weight: 500;
 }
 
-/* ===== Animations ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -145,7 +149,7 @@
 }
 
 @media (max-width: 768px) {
-  body.sidebar-open {
+  .sidebar-open {
     overflow: hidden;
   }
 
@@ -209,14 +213,6 @@
     border-radius: 12px;
   }
 
-  .sidebar {
-    width: 72vw;
-    max-width: 290px;
-  }
-
-  .sidebar-overlay {
-    animation: fadeIn 0.15s ease-out;
-  }
 }
 
 @media (max-width: 480px) {
@@ -284,16 +280,17 @@
 .component-box.fullscreen .output-box {
   flex: 1;
   max-height: 100%;
-  overflow: auto;
   border-radius: 12px;
 }
 
 .sandbox-preview {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   height: 100%;
-  border: none;
-  overflow: hidden;
+  overflow: auto;
 }
+
 
 @media (max-width: 768px) {
   .component-box.fullscreen {

@@ -184,3 +184,9 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 435px) {
+  .mobile-menu-icon{
+    top:38px
+  }
+}

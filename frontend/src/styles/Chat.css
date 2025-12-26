@@ -4,15 +4,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .chat-box-and-input {
-  display: flex;
   flex: 1;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  min-width: 0; /* ← MOST important line to prevent right overflow */
+  display: flex;
   flex-direction: column;
 }
 
@@ -53,8 +54,53 @@
   font-size: 10px;
 }
 
+
 @media (max-width: 768px) {
-  .chat-header{
+  .chat-header {
+    flex-wrap: nowrap;  /* ← stop jumping to another line too early */
+    overflow: hidden;
     padding-left: 65px;
+    min-width: 0;
+  }
+
+  .right-chat-header {
+    display: flex;
+    justify-content: flex-end; /* ← always stay at right end */
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex-shrink: 1;  /* ← allow shrinking instead of wrapping */
+  }
+
+  .chat-header button {
+    flex-shrink: 1;       /* ← shrink button width if needed */
+    white-space: nowrap;  /* keep text in one line */
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .chat-header {
+    padding-left: 60px; /* reduce forced left padding on tiny screens */
+  }
+
+  .right-chat-header {
+    justify-content: center; /* center buttons when space is very small */
+  }
+
+  .chat-header button {
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 430px) {
+  .right-chat-header {
+    flex-wrap: wrap; /* only wrap when it's REALLY needed */
+    flex-direction: column; /* stack buttons but still aligned right */
+    align-items: flex-end;
   }
 }

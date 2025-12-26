@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Sidebar from "../components/Sidebar";
 import "../styles/Chat.css";
 import ChatBox from "../components/ChatBox";
@@ -11,27 +11,26 @@ const Chat = () => {
   const [chat, setChat] = useState({});
   const navigate = useNavigate();
 
-  // Fetch messages
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
       const res = await fetch(`http://localhost:5000/api/message/${chatId}`, {
         method: "GET",
         credentials: "include",
       });
       const data = await res.json();
+
       if (!data || data.length === 0) {
-        navigate("/", { replace: true });
-        return;
+        return navigate("/", { replace: true });
       }
+
       setMessages(data);
     } catch (err) {
       console.error(err);
-      navigate("/", { replace: true });
+      return navigate("/", { replace: true });
     }
-  };
+  }, [chatId, navigate]);
 
-  // Fetch chat details
-  const fetchChatDetails = async () => {
+  const fetchChatDetails = useCallback(async () => {
     try {
       const res = await fetch(`http://localhost:5000/api/chats/${chatId}`, {
         method: "GET",
@@ -41,14 +40,14 @@ const Chat = () => {
       setChat(data);
     } catch (e) {
       console.error(e);
-      navigate("/", { replace: true });
+      return navigate("/", { replace: true });
     }
-  };
+  }, [chatId, navigate]);
 
   useEffect(() => {
     fetchMessages();
     fetchChatDetails();
-  }, [chatId]);
+  }, [chatId, fetchMessages, fetchChatDetails]);
 
   return (
     <div style={{ padding: "20px", height: "100vh", display: "flex" }}>

@@ -4,6 +4,8 @@ import {
   SandpackPreview,
   SandpackLayout,
 } from "@codesandbox/sandpack-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { atomDark } from "@codesandbox/sandpack-themes";
 import "../styles/ChatMessage.css";
 
@@ -79,9 +81,10 @@ const ChatMessage = ({ role, text, explanation, component }) => {
                   <button onClick={handleDownload}>Download</button>
                 </div>
               </div>
-
               <div className="file-card-body">
-                <pre>{code}</pre>
+                <SyntaxHighlighter language="jsx" style={oneDark} wrapLongLines={true}>
+                  {code}
+                </SyntaxHighlighter>
               </div>
             </div>
 
