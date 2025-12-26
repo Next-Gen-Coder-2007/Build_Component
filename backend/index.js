@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000", // Allow your frontend origin
+  origin: 'https://build-component.vercel.app', // Allow your frontend origin
   credentials: true
 }));
 app.use(cookieParser())
