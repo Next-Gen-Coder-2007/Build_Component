@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ChatBox = () => {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
   const navigate = useNavigate();
 
   const handleSendMessage = async () => {
@@ -33,13 +34,36 @@ const ChatBox = () => {
     setSending(false);
   };
 
+  const handleLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+
+    try {
+      const res = await fetch("https://build-component.onrender.com/api/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+
+    setLoggingOut(false);
+  };
+
   return (
     <div className="chat-box">
       <button className="profile-btn" onClick={() => navigate("/profile")}>
         Profile
       </button>
       <div className="logout">
-        <button onClick={() => navigate("/login")}>Logout</button>
+        <button onClick={handleLogout} disabled={loggingOut}>
+          {loggingOut ? "Logging out..." : "Logout"}
+        </button>
       </div>
       <h1>New Chat</h1>
       <div className="chat-input">
