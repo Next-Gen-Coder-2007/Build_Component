@@ -12,30 +12,39 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    if (!name || !email || !password || !confirmPassword) {
+      setError("Please fill in all fields");
+      return;
+    }
+  
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
-
+  
     try {
       const response = await fetch("https://build-component.onrender.com/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
+        body: JSON.stringify({ name, email, password }),
       });
-
+  
+      if (!response.ok) {
+        const data = await response.json();
+        setError(data.message || "Something went wrong");
+        return;
+      }
+  
+      setError("");
       navigate("/login");
     } catch (e) {
       console.log(e);
       setError("Something went wrong");
     }
   };
+
 
   return (
     <div className="outer-register-container">
