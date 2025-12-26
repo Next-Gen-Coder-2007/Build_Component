@@ -13,7 +13,7 @@ const Chat = () => {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/message/${chatId}`, {
+      const res = await fetch(`http://build-component.onrender.com/api/message/${chatId}`, {
         method: "GET",
         credentials: "include",
       });
@@ -32,7 +32,7 @@ const Chat = () => {
 
   const fetchChatDetails = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/chats/${chatId}`, {
+      const res = await fetch(`http://build-component.onrender.com/api/chats/${chatId}`, {
         method: "GET",
         credentials: "include",
       });
