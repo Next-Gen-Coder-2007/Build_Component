@@ -35,7 +35,7 @@ const ProfilePage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/user", {
+      const res = await fetch("http://build-component.onrender.com/api/user", {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ const ProfilePage = () => {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete your account?")) return;
     try {
-      const res = await fetch("http://localhost:5000/api/user", {
+      const res = await fetch("http://build-component.onrender.com/api/user", {
         method: "DELETE",
         credentials: "include",
       });
