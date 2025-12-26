@@ -12,7 +12,7 @@ const Sidebar = () => {
 
   const fetchChats = async () => {
     try {
-      const response = await fetch("http://build-component.onrender.com/api/chats", {
+      const response = await fetch("https://build-component.onrender.com/api/chats", {
         credentials: "include",
       });
       const data = await response.json();
