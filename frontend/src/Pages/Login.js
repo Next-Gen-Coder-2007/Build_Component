@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://build-component.onrender.com/api/auth/login", {
+      const response = await fetch("https://build-component.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
