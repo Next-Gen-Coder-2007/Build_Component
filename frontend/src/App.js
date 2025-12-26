@@ -4,12 +4,12 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 import { useEffect } from "react";
-import Chat from "./pages/Chat";
-import ProfilePage from "./pages/ProfilePage";
+import Chat from "./Pages/Chat";
+import ProfilePage from "./Pages/ProfilePage";
 
 function AuthWrapper() {
   const navigate = useNavigate();
