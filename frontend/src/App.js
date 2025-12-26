@@ -16,7 +16,7 @@ function AuthWrapper() {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await fetch("http://build-component.onrender.com/api/auth/verify", {
+        const res = await fetch("https://build-component.onrender.com/api/auth/verify", {
           method: "GET",
           credentials: "include",
         });
