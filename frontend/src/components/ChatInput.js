@@ -9,7 +9,7 @@ const ChatInput = ({ chatId, setMessages }) => {
     if (!message.trim()) return;
     setLoading(true);
     try {
-      const res = await fetch("https://build-component.onrender.comapi/message", {
+      const res = await fetch("https://build-component.onrender.com/api/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
